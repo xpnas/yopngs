@@ -2,9 +2,9 @@
 
 示例站点：[有图床](https://yopngs.com)
 
-[![Docker Image master](https://github.com/xpnas/yopngs/actions/workflows/docker-image.yml/badge.svg)](https://github.com/xpnas/yopngs/actions/workflows/docker-image.yml)
+[![Docker Image master](https://github.com/xpnas/yopngs/actions/workflows/docker-image.yml/badge.svg?branch=master)](https://github.com/xpnas/yopngs/actions/workflows/docker-image.yml)
 
-一个纯粹的图床，聚焦图床核心功能，抛去用户验证、上传限制，自带鉴黄功能
+一个纯粹的开源图床，聚焦图床核心功能，抛去用户验证、上传限制，自带鉴黄功能
 
 ## 使用方法
 
@@ -39,7 +39,7 @@ docker run --name=yopngs -d -p 8081:80 -v /yopngs:/yopngs -v /yopngs_config:/app
 
 ### 本地存储
 
-DISKStores节点，支持多个
+DISKStores节点，支持多个，可使用docker启动命令映射Rclone挂载的磁盘
 ``` json
   "DISKStores": [
     {
