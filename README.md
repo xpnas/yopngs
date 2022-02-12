@@ -39,7 +39,7 @@ docker run --name=yopngs -d -p 8081:80 -v /yopngs:/yopngs -v /yopngs_config:/app
 
 ### 本地存储
 
-DISKStores节点，支持多个
+DISKStores节点，支持多个，可使用docker启动命令映射Rclone挂载的磁盘
 ``` json
   "DISKStores": [
     {
