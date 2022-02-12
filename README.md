@@ -84,3 +84,15 @@ OSSStores节点，支持多个
     }
   ],
 ```
+## 其他设置
+
+```json
+  "GLOBAL": {
+    "SIZELIMIT": 30,//图片大小
+    "EXTLIMIT": ".PNG.GIF.JPG.JPEG.BMP",//类型限制
+    "NSFW": true,//鉴黄开关
+    "COMPRESS": false,//未实现，请勿开启
+    "COUNT": 0,
+    "STARTDATE": "2020.01.01"
+  },
+```
