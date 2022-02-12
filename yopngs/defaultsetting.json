@@ -1,0 +1,44 @@
+﻿{
+  "GLOBAL": {
+    "SIZELIMIT": 30,
+    "EXTLIMIT": ".PNG.GIF.JPG.JPEG.BMP",
+    "COMPRESS": false,
+    "COUNT": 0,
+    "STARTDATE": "2020.01.01"
+  },
+  "DISKStores": [
+    {
+      "diskfloder": "/yopngs",
+      "webfloder": "/v1",
+      "name": "yopngs",
+      "type": "yopngs",
+      "index": 0,
+      "active": true
+    }
+  ]
+  //"OSSStores": [
+  //  {
+  //    "AccessKeyId": "ap-shanghai",
+  //    "AccessKeySecret": "xx-xx",
+  //    "Endpoint": "xx",
+  //    "Domain": "https://xx.com",
+  //    "name": "OSS",
+  //    "type": "OSS",
+  //    "index": "2",
+  //    "active": false
+  //  }
+  //],
+  //"COSStores": [
+  //  {
+  //    "region": "ap-shanghai",
+  //    "bucket": "xx-xx",
+  //    "SECRET_ID": "xx",
+  //    "SECRET_KEY": "xx",
+  //    "Domain": "https://xx.com",
+  //    "name": "COS",
+  //    "type": "COS",
+  //    "index": 1,
+  //    "active": false
+  //  }
+  //],
+}
