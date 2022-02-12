@@ -126,7 +126,7 @@ namespace Iimages.Controllers
                           var maps = memoery.GetBuffer();
 
                           //鉴黄
-                          if (!SotreCenter.ImagesCheck.PassSex(maps))
+                          if (SotreCenter.NSFW && !SotreCenter.ImagesCheck.PassSex(maps))
                           {
                               return Ok(new
                               {
