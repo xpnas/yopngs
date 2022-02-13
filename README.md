@@ -10,7 +10,7 @@
 
 ### 发布版
 
-  请先确认已安装DockerCompse
+  请先确认已安装DockerCompose
   ```
   wget "https://raw.githubusercontent.com/xpnas/yopngs/master/docker-compose.yml" 
   ```
