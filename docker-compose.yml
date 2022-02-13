@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  yopngs:
+    container_name: yopngs
+    restart: always
+    image: xpnas/yopngs:latest
+    volumes:
+      - /yopngs:/yopngs
+      - /yopngs_config:/app/config
+    ports:
+      - "8081:80"
+    networks:
+      - yopngs
+
+  nsfwapi:
+    container_name: nsfwapi
+    restart: always
+    image: eugencepoi/nsfw_api:latest
+    environment:
+      PORT: 5000
+    links:
+      - yopngs
+    ports:
+      - "8082:5000"
+    networks:
+      - yopngs
+
+networks:
+  yopngs:
+    driver: bridge
