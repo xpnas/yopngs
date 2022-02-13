@@ -93,14 +93,15 @@ namespace Iimages.Stores
                     var index = section.GetValue<int>("index");
                     var name = section.GetValue<string>("name");
                     var type = section.GetValue<string>("type");
-                    var diskStore = new B2Store(keyId, applicationKey, bucketId, persistBucket, domain)
+
+                    var store = new B2Store(keyId, applicationKey, bucketId, persistBucket, domain)
                     {
                         Name = name,
                         Type = type,
                         Index = index
                     };
 
-                    results.Add(diskStore);
+                    results.Add(store);
                 }
             }
 

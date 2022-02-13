@@ -66,14 +66,14 @@ namespace Iimages.Stores
                     var type = section.GetValue<string>("type");
 
 
-                    var diskStore = new OSSStore(acessKeyId, acessKeySecret, endPoint, bucket,domain)
+                    var store = new OSSStore(acessKeyId, acessKeySecret, endPoint, bucket,domain)
                     {
                         Name = name,
                         Type = type,
                         Index = index
                     };
 
-                    results.Add(diskStore);
+                    results.Add(store);
                 }
             }
 

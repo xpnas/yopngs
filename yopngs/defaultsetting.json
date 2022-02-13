@@ -3,6 +3,9 @@
     "SIZELIMIT": 30,
     "EXTLIMIT": ".PNG.GIF.JPG.JPEG.BMP",
     "NSFW": true,
+    "NSFWCORE": 0.5,
+    "NSFWHOST": "http://host.docker.internal:8082",
+    "SERVERHOST": "http://host.docker.internal:8081",
     "COMPRESS": false,
     "COUNT": 0,
     "STARTDATE": "2020.01.01"

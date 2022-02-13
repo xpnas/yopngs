@@ -126,7 +126,7 @@ namespace Iimages.Controllers
                           var maps = memoery.GetBuffer();
 
                           //鉴黄
-                          if (SotreCenter.NSFW && !SotreCenter.ImagesCheck.PassSex(maps))
+                          if (SotreCenter.NSFW && !SotreCenter.NSFWCHECK.PassSex(maps))
                           {
                               return Ok(new
                               {
@@ -147,7 +147,6 @@ namespace Iimages.Controllers
                           {
                               maps = SotreCenter.StoreCompress.Compress(maps);
                           }
-
 
                           //存储
                           var cdnUrl = string.Empty;

@@ -70,14 +70,14 @@ namespace Iimages.Stores
                     var type = section.GetValue<string>("type");
                     var index = section.GetValue<int>("index");
 
-                    var diskStore = new DISKStore(diskfloder, webfloder,host)
+                    var store = new DISKStore(diskfloder, webfloder,host)
                     {
                         Name = name,
                         Type = type,
                         Index = index
                     };
 
-                    results.Add(diskStore);
+                    results.Add(store);
                 }
             }
             return results.ToArray();

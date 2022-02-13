@@ -4,17 +4,17 @@ using NsfwSpyNS;
 
 namespace Iimages.IStore
 {
-    public class StoreCheckNsfwWarper : IStoreCheck
+    public class StoreCheckNsfwWarperNSFWSPY : IStoreCheck
     {
 
         private static NsfwSpy g_NsfwSpy;
 
-        static StoreCheckNsfwWarper()
+        static StoreCheckNsfwWarperNSFWSPY()
         {
             g_NsfwSpy = new NsfwSpy();
         }
 
-        public StoreCheckNsfwWarper(IApplicationBuilder app, IConfiguration config)
+        public StoreCheckNsfwWarperNSFWSPY(IApplicationBuilder app, IConfiguration config)
         {
 
         }

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.IO;
+using System.Net.Http;
 
 namespace Iimages
 {
@@ -24,7 +25,7 @@ namespace Iimages
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHttpClientFactory httpClientFactory)
         {
             app.UseCors(options =>
             {
@@ -55,7 +56,7 @@ namespace Iimages
                   .AddJsonFile("config/setting.json", optional: true, reloadOnChange: true)
                   .Build();
 
-            IStore.SotreCenter.Initialize(app, config);
+            IStore.SotreCenter.Initialize(app, env,config, httpClientFactory);
 
             app.UseEndpoints(endpoints =>
             {

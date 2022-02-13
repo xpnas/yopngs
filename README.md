@@ -8,14 +8,16 @@
 
 ## 使用方法
 
-### 发布版（推荐）
+### 发布版
+
+  先启动鉴黄容器,再启动图床容器
+
   ```
-docker run --name=yopngs -d -p 8081:80 -v /yopngs:/yopngs -v /yopngs_config:/app/config --restart=always xpnas/yopngs:latest
+  docker run --name=nsfw_api -p 8082:5000/tcp --env PORT=5000  --restart=always  eugencepoi/nsfw_api:latest
   ```
 
-### 开发版
   ```
-docker run --name=yopngs -d -p 8081:80 -v /yopngs:/yopngs -v /yopngs_config:/app/config --restart=always xpnas/yopngs:master
+  docker run --name=yopngs -d -p 8081:80 -v /yopngs:/yopngs -v /yopngs_config:/app/config --restart=always xpnas/yopngs:latest
   ```
 
 ### 配置Nginx代理
@@ -91,6 +93,9 @@ OSSStores节点，支持多个
     "SIZELIMIT": 30,//图片大小
     "EXTLIMIT": ".PNG.GIF.JPG.JPEG.BMP",//类型限制
     "NSFW": true,//鉴黄开关
+    "NSFWCORE": 0.5,//鉴黄分数0~1
+    "NSFWHOST": "http://host.docker.internal:8082",
+    "SERVERHOST": "http://host.docker.internal:8081",
     "COMPRESS": false,//未实现，请勿开启
     "COUNT": 0,
     "STARTDATE": "2020.01.01"

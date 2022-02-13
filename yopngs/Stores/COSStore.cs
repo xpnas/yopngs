@@ -75,14 +75,14 @@ namespace Iimages.Stores
                     var type = section.GetValue<string>("type");
 
 
-                    var diskStore = new COSStore(bucket, region, secretId, secretKey, domain)
+                    var store = new COSStore(bucket, region, secretId, secretKey, domain)
                     {
                         Name = name,
                         Type = type,
                         Index = index
                     };
 
-                    results.Add(diskStore);
+                    results.Add(store);
                 }
             }
 

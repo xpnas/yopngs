@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 
 namespace Iimages.IStore
@@ -23,15 +25,24 @@ namespace Iimages.IStore
 
 
 
-        public static void Initialize(IApplicationBuilder app, IConfiguration configuration)
+        public static void Initialize(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration, IHttpClientFactory httpClientFactory)
         {
             var stores = StoreFactories.SelectMany(e => e.GetStores(app, configuration)).ToList();
             Config = configuration;
             Stores = stores.ToDictionary(e => e.Type, e => e);
             Supports = stores.Select(e => new SupportType(e)).OrderBy(e => e.Index).ToList();
-            ImagesCheck = new StoreCheckNsfwWarper(app, configuration);
-            StoreCompress = new StoreCompressPngQuantWarper(app, configuration);
             NSFW = configuration.GetSection("GLOBAL").GetValue<bool>("NSFW");
+            NSFWHOST = configuration.GetSection("GLOBAL").GetValue<string>("NSFWHOST");
+            if (string.IsNullOrEmpty(NSFWHOST))
+            {
+                NSFWCHECK = new StoreCheckNsfwWarperNSFWSPY(app, configuration);
+            }
+            else
+            {
+                NSFWCHECK = new StoreCheckNsfwWarperResetAPI(app, env, configuration, httpClientFactory);
+            }
+ 
+            StoreCompress = new StoreCompressPngQuantWarper(app, configuration);
             COMPRESS = configuration.GetSection("GLOBAL").GetValue<bool>("COMPRESS");
         }
 
@@ -39,7 +50,10 @@ namespace Iimages.IStore
 
         public static bool NSFW { get; private set; }
 
+        public static string NSFWHOST { get; private set; }
+
         public static bool COMPRESS { get; private set; }
+
 
         public static List<IStoreFactory> StoreFactories { get; private set; }
 
@@ -47,7 +61,7 @@ namespace Iimages.IStore
 
         public static List<SupportType> Supports { get; private set; }
 
-        public static IStoreCheck ImagesCheck { get; private set; }
+        public static IStoreCheck NSFWCHECK { get; private set; }
 
         public static IStoreCompress StoreCompress { get; private set; }
 

@@ -72,14 +72,14 @@ namespace Iimages.Stores
                     var type = section.GetValue<string>("type");
 
 
-                    var diskStore = new S3Store(secretID, secretKey, region, domain)
+                    var store = new S3Store(secretID, secretKey, region, domain)
                     {
                         Name = name,
                         Type = type,
                         Index = index
                     };
 
-                    results.Add(diskStore);
+                    results.Add(store);
                 }
             }
 
