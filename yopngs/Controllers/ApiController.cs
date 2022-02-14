@@ -143,7 +143,7 @@ namespace Iimages.Controllers
                           }
 
                           //压缩
-                          if (SotreCenter.COMPRESS && fileExt.ToUpper() == ".PNG")
+                          if (SotreCenter.COMPRESS && (fileExt.ToUpper() == ".PNG" || fileExt.ToUpper() == ".JPG"))
                           {
                               maps = SotreCenter.StoreCompress.Compress(maps);
                           }

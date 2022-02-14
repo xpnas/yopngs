@@ -22,9 +22,6 @@ namespace Iimages.IStore
                 .ToList();
         }
 
-
-
-
         public static void Initialize(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration, IHttpClientFactory httpClientFactory)
         {
             var stores = StoreFactories.SelectMany(e => e.GetStores(app, configuration)).ToList();
@@ -32,18 +29,16 @@ namespace Iimages.IStore
             Stores = stores.ToDictionary(e => e.Type, e => e);
             Supports = stores.Select(e => new SupportType(e)).OrderBy(e => e.Index).ToList();
             NSFW = configuration.GetSection("GLOBAL").GetValue<bool>("NSFW");
+            COMPRESS = configuration.GetSection("GLOBAL").GetValue<bool>("COMPRESS");
             NSFWHOST = configuration.GetSection("GLOBAL").GetValue<string>("NSFWHOST");
-            if (string.IsNullOrEmpty(NSFWHOST))
-            {
-                NSFWCHECK = new StoreCheckNsfwWarperNSFWSPY(app, configuration);
-            }
-            else
+            if (NSFW)
             {
                 NSFWCHECK = new StoreCheckNsfwWarperResetAPI(app, env, configuration, httpClientFactory);
             }
- 
-            StoreCompress = new StoreCompressPngQuantWarper(app, configuration);
-            COMPRESS = configuration.GetSection("GLOBAL").GetValue<bool>("COMPRESS");
+            if (COMPRESS)
+            {
+                StoreCompress = new StoreCompressTinyWarper(app, env, configuration, httpClientFactory);
+            }
         }
 
         public static IConfiguration Config { get; private set; }
@@ -53,7 +48,6 @@ namespace Iimages.IStore
         public static string NSFWHOST { get; private set; }
 
         public static bool COMPRESS { get; private set; }
-
 
         public static List<IStoreFactory> StoreFactories { get; private set; }
 

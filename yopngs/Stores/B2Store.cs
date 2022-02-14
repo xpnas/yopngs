@@ -33,7 +33,6 @@ namespace Iimages.Stores
                 PersistBucket = mPersistBucket
             };
 
-
         }
 
         public override bool Up(byte[] maps, string localName, string localUrl, ref string cdnUrl)
@@ -44,6 +43,7 @@ namespace Iimages.Stores
                 {
                     if (mClient == null)
                         mClient = new B2Client(mOptions);
+                   
 
                     return UploadBedAct(maps, localName, ref cdnUrl);
                 }
@@ -90,10 +90,11 @@ namespace Iimages.Stores
                     var bucketId = section.GetValue<string>("BucketId");
                     var persistBucket = section.GetValue<bool>("PersistBucket");
                     var domain = section.GetValue<string>("Domain");
+
+
                     var index = section.GetValue<int>("index");
                     var name = section.GetValue<string>("name");
                     var type = section.GetValue<string>("type");
-
                     var store = new B2Store(keyId, applicationKey, bucketId, persistBucket, domain)
                     {
                         Name = name,

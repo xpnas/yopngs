@@ -94,7 +94,7 @@ OSSStores节点，支持多个
     "NSFWCORE": 0.5,//鉴黄分数0~1
     "NSFWHOST": "http://nsfwapi:5000",//请勿修改
     "SERVERHOST": "http://yopngs:80",//请勿修改
-    "COMPRESS": false,//未实现，请勿开启
+    "COMPRESS": false,//是否启用压缩
     "COUNT": 0,
     "STARTDATE": "2020.01.01"
   },
