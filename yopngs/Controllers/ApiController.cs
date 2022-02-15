@@ -21,7 +21,6 @@ namespace Iimages.Controllers
         private IHostEnvironment mEenvironment;
 
 
-
         public ApiController(IHostEnvironment hostEnvironment)
         {
             mEenvironment = hostEnvironment;
@@ -125,6 +124,13 @@ namespace Iimages.Controllers
                           formFile.CopyTo(memoery);
                           var maps = memoery.GetBuffer();
 
+                          //压缩
+                          if (SotreCenter.COMPRESS && (fileExt.ToUpper() == ".PNG" || fileExt.ToUpper() == ".JPG"))
+                          {
+                              maps = SotreCenter.StoreCompress.Compress(maps);
+                          }
+
+
                           //鉴黄
                           if (SotreCenter.NSFW && !SotreCenter.NSFWCHECK.PassSex(maps))
                           {
@@ -142,11 +148,6 @@ namespace Iimages.Controllers
                               });
                           }
 
-                          //压缩
-                          if (SotreCenter.COMPRESS && (fileExt.ToUpper() == ".PNG" || fileExt.ToUpper() == ".JPG"))
-                          {
-                              maps = SotreCenter.StoreCompress.Compress(maps);
-                          }
 
                           //存储
                           var cdnUrl = string.Empty;

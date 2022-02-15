@@ -5,16 +5,16 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Iimages.Stores
 {
     public class B2Store : StoreBase
     {
 
-        private B2Client mClient = null;
-        private B2Options mOptions;
         private bool mPersistBucket;
         private string mKeyId, mApplicationKey, mBucketId, mDomain;
+ 
 
 
         public B2Store(string keyId, string applicationKey, string bucketId, bool prsistBucket, string domain)
@@ -24,53 +24,38 @@ namespace Iimages.Stores
             mBucketId = bucketId;
             mPersistBucket = prsistBucket;
             mDomain = domain;
-
-            mOptions = new B2Options()
-            {
-                KeyId = mKeyId,
-                ApplicationKey = mApplicationKey,
-                BucketId = mBucketId,
-                PersistBucket = mPersistBucket
-            };
-
         }
 
         public override bool Up(byte[] maps, string localName, string localUrl, ref string cdnUrl)
         {
-            lock (mClient)
+            try
             {
-                try
+                var mOptions = new B2Options()
                 {
-                    if (mClient == null)
-                        mClient = new B2Client(mOptions);
-                   
+                    KeyId = mKeyId,
+                    ApplicationKey = mApplicationKey,
+                    BucketId = mBucketId,
+                    PersistBucket = mPersistBucket
+                };
+                var mClient = new B2Client(mOptions);
+                var result = mClient.Authorize().Result;
+                if (result.Authenticated)
+                {
+                    var timeTag = DateTime.Now.ToString("yyyy/MM/dd/");
+                    var uploadUrl = mClient.Files.GetUploadUrl(mBucketId).Result;
+                    var fileInfo = mClient.Files.Upload(maps, timeTag + localName, uploadUrl).Result;
+                    var fileId = fileInfo.FileId;
+                    cdnUrl = string.Format("{0}/file/{1}/{2}", mDomain, result.Capabilities.BucketName, timeTag + localName);
 
-                    return UploadBedAct(maps, localName, ref cdnUrl);
+                    return true;
                 }
-                catch
-                {
-                    mClient = new B2Client(mOptions);
-                    return UploadBedAct(maps, localName, ref cdnUrl);
-                }
+                return false;
+            }
+            catch
+            {
+                return false;
             }
         }
-
-
-        private bool UploadBedAct(byte[] maps, string localName, ref string cdnUrl)
-        {
-            var result = mClient.Authorize().Result;
-            if (result.Authenticated)
-            {
-                var timeTag = DateTime.Now.ToString("yyyy-MM-dd");
-                var uploadUrl = mClient.Files.GetUploadUrl(mBucketId).Result;
-                var fileInfo = mClient.Files.Upload(maps, timeTag + "_" + localName, uploadUrl).Result;
-                var fileId = fileInfo.FileId;
-                cdnUrl = string.Format("{0}/b2api/v1/b2_download_file_by_id?fileId={1}", mDomain, fileId);
-                return true;
-            }
-            return false;
-        }
-
     }
 
 
