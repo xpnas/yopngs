@@ -6,6 +6,8 @@
 
 一个纯粹的开源图床，聚焦图床核心功能，抛去用户验证、上传限制，自带鉴黄功能
 
+支持鉴黄、支持压缩、支持本地存储、COS存储、OSS存储、B2存储
+
 ## 使用方法
 
 ### 发布版
@@ -38,7 +40,6 @@
 所有配置都在config目录下的setting.json文件,可参照defaultsetting.json修改
 
 ### 本地存储
-
 DISKStores节点，支持多个，可使用docker启动命令映射Rclone挂载的磁盘
 ``` json
   "DISKStores": [
@@ -51,13 +52,28 @@ DISKStores节点，支持多个，可使用docker启动命令映射Rclone挂载�
       "active": true//是否激活
     },
 ```
+### Backblaze2存储
+B2Stores节点，支持多个
+``` json
+"B2Stores": [
+  {
+    "KeyId": "xx",
+    "ApplicationKey": "xx",
+    "BucketId": "xx",
+    "Domain": "https://xx.com",
+    "name": "backblazeb2",
+    "type": "backblazeb2",
+    "index": "2",
+    "active": true
+   }
+  ```
 ### 腾讯COS存储
 COSStores节点，支持多个
 ``` json
   "COSStores": [
     {
       "region": "ap-shanghai",
-      "bucket": "xx-xx",
+      "bucket": "xx",
       "SECRET_ID": "xx",
       "SECRET_KEY": "xx",
       "Domain": "https://xx.com",
@@ -73,8 +89,8 @@ OSSStores节点，支持多个
 ``` json
   "OSSStores": [
     {
-      "AccessKeyId": "ap-shanghai",
-      "AccessKeySecret": "xx-xx",
+      "AccessKeyId": "xxx",
+      "AccessKeySecret": "xx",
       "Endpoint": "xx",
       "Domain": "https://xx.com",
       "name": "OSS",
