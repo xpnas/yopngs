@@ -19,41 +19,42 @@
       "index": 0,
       "active": true
     }
-  ],
+  ]
   //"B2Stores": [
   //  {
   //    "KeyId": "xx",
   //    "ApplicationKey": "xx",
   //    "BucketId": "xx",
   //    "Domain": "xx",
+  //    "Safe"": false
   //    "name": "backblazeb2",
   //    "type": "backblazeb2",
   //    "index": "2",
   //    "active": true
   //  }
-    //"OSSStores": [
-    //  {
-    //    "AccessKeyId": "ap-shanghai",
-    //    "AccessKeySecret": "xx-xx",
-    //    "Endpoint": "xx",
-    //    "Domain": "https://xx.com",
-    //    "name": "OSS",
-    //    "type": "OSS",
-    //    "index": "2",
-    //    "active": false
-    //  }
-    //],
-    //"COSStores": [
-    //  {
-    //    "region": "ap-shanghai",
-    //    "bucket": "xx-xx",
-    //    "SECRET_ID": "xx",
-    //    "SECRET_KEY": "xx",
-    //    "Domain": "https://xx.com",
-    //    "name": "COS",
-    //    "type": "COS",
-    //    "index": 1,
-    //    "active": false
-    //  }
-    //],
+  //"OSSStores": [
+  //  {
+  //    "AccessKeyId": "ap-shanghai",
+  //    "AccessKeySecret": "xx-xx",
+  //    "Endpoint": "xx",
+  //    "Domain": "https://xx.com",
+  //    "name": "OSS",
+  //    "type": "OSS",
+  //    "index": "2",
+  //    "active": false
+  //  }
+  //],
+  //"COSStores": [
+  //  {
+  //    "region": "ap-shanghai",
+  //    "bucket": "xx-xx",
+  //    "SECRET_ID": "xx",
+  //    "SECRET_KEY": "xx",
+  //    "Domain": "https://xx.com",
+  //    "name": "COS",
+  //    "type": "COS",
+  //    "index": 1,
+  //    "active": false
+  //  }
+  //],
 }
