@@ -61,7 +61,7 @@ B2Stores节点，支持多个
     "ApplicationKey": "xx",
     "BucketId": "xx",
     "Domain": "https://xx.com",//建议在B2前套上Cloudflare，使用自定义域名
-    "Salf":false,//建议使用Cloudflare规则以避免暴露B2信息，防止有心人刷B2流量，开启后将去除Url中的file/BucketName
+    "Safe":false,//建议使用Cloudflare规则以避免暴露B2信息，防止有心人刷B2流量，开启后将去除Url中的file/BucketName
     "name": "backblazeb2",
     "type": "backblazeb2",
     "index": "2",
