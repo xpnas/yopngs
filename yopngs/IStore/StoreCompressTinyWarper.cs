@@ -33,7 +33,7 @@ namespace Iimages.IStore
             try
             {
                 var randomIP = string.Format("{0}.{1},{2},{3}", new Random().Next(1, 254), new Random().Next(1, 254), new Random().Next(1, 254), new Random().Next(1, 254));
-                var webRequest = WebRequest.Create(new Uri("https://tinypng.com//web/shrink"));
+                var webRequest = WebRequest.Create(new Uri("https://tinypng.com/backend/opt/shrink"));
                 webRequest.Method = "Post";
                 webRequest.ContentType = "application/x-www-form-urlencoded";
                 webRequest.Headers.Add("rejectUnauthorized", "false");
@@ -79,7 +79,7 @@ namespace Iimages.IStore
                     }
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 return maps;
             }
