@@ -8,6 +8,9 @@ services:
     volumes:
       - /yopngs:/yopngs
       - /yopngs_config:/app/config
+      - /usr/bin/pngquant:/app/pngquant
+      - /usr/lib/libpng16.so.16:/usr/lib/libpng16.so.16
+      - /usr/lib/libpng16.so:/usr/lib/libpng16.so 
     ports:
       - "8081:80"
     networks:

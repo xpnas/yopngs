@@ -37,7 +37,8 @@ namespace Iimages.IStore
             }
             if (COMPRESS)
             {
-                StoreCompress = new StoreCompressTinyWarper(app, env, configuration, httpClientFactory);
+                //  StoreCompress = new StoreCompressTinyWarper(app, env, configuration, httpClientFactory);
+                StoreCompress = new StoreCompressPngQuantWarper(app, configuration);
             }
         }
 
