@@ -1,10 +1,10 @@
-name: Docker Image master
+name: Docker Image private
 
 on:
   push:
-    branches: [ master ]
+    branches: [ private ]
   pull_request:
-    branches: [ master ]
+    branches: [ private ]
 
 jobs:
 
@@ -30,7 +30,7 @@ jobs:
         file: ./yopngs/Dockerfile
         platforms: linux/amd64
         push: true
-        tags: xpnas/yopngs:master
+        tags: xpnas/yopngs:private
 
     - name: 'Report Suecss'
-      run: curl ${{ secrets.INOTIFY }}/yopngs/masterIsOk!
+      run: curl ${{ secrets.INOTIFY }}/yopngs/privateIsOk!
